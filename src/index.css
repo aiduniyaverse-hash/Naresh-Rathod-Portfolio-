@@ -5,11 +5,15 @@
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   
-  --color-canvas: #020617;
+  --color-canvas: #030712;
   --color-surface: #0f172a;
-  --color-primary: #2563eb;
-  --color-secondary: #7c3aed;
+  --color-surface-card: rgba(255, 255, 255, 0.04);
+  --color-primary: #3b82f6;
+  --color-secondary: #8b5cf6;
   --color-accent: #06b6d4;
+  --color-text-main: #ffffff;
+  --color-text-muted: #94a3b8;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
 }
 
 :root {
@@ -18,22 +22,31 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: #020617;
+  background-color: #030712;
+  color: #ffffff;
   overflow-x: hidden;
+  letter-spacing: -0.012em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, .font-heading {
+h1, h2, h3, h4, h5, h6, .font-heading {
   font-family: var(--font-display);
+  letter-spacing: -0.03em;
 }
 
-/* Custom delicate scrollbars */
+code, pre, .font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Custom minimal scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: #030712;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -42,41 +55,68 @@ h1, h2, h3, .font-heading {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.4);
+  background: rgba(148, 163, 184, 0.35);
+}
+
+/* Linear & Apple-inspired glass surfaces */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-subtle {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-panel-interactive {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-interactive:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.6), 0 0 24px -4px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 /* Subtle glow utility classes */
 .glow-blue {
-  box-shadow: 0 0 50px -10px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 0 40px -8px rgba(59, 130, 246, 0.25);
 }
 
 .glow-violet {
-  box-shadow: 0 0 50px -10px rgba(124, 58, 237, 0.25);
+  box-shadow: 0 0 40px -8px rgba(139, 92, 246, 0.25);
 }
 
 .glow-cyan {
-  box-shadow: 0 0 50px -10px rgba(6, 182, 212, 0.25);
+  box-shadow: 0 0 40px -8px rgba(6, 182, 212, 0.25);
 }
 
-/* Glassmorphism panel */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Text balance utility */
+.text-balance {
+  text-wrap: balance;
 }
 
-.glass-panel-interactive {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Luxury button styling */
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #8b5cf6 100%);
+  box-shadow: 0 2px 14px rgba(59, 130, 246, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-panel-interactive:hover {
-  background: rgba(15, 23, 42, 0.85);
-  border-color: rgba(6, 182, 212, 0.35);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.15);
+.btn-primary-gradient:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
 }

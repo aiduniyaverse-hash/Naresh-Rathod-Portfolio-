@@ -33,29 +33,29 @@ export const NeuralCanvas: React.FC = () => {
       radius: 140,
     };
 
-    // Color palette for neural nodes
+    // Color palette for neural nodes (refined OpenAI/Linear palette)
     const colors = [
-      'rgba(37, 99, 235, 0.8)', // Primary blue
-      'rgba(124, 58, 237, 0.8)', // Secondary violet
-      'rgba(6, 182, 212, 0.8)', // Accent cyan
-      'rgba(56, 189, 248, 0.8)', // Sky blue
+      'rgba(59, 130, 246, 0.65)', // Primary blue #3B82F6
+      'rgba(139, 92, 246, 0.55)', // Secondary violet #8B5CF6
+      'rgba(6, 182, 212, 0.55)', // Accent cyan #06B6D4
+      'rgba(148, 163, 184, 0.45)', // Muted slate
     ];
 
     // Determine density based on screen size
-    const particleCount = Math.min(Math.floor((width * height) / 14000), 75);
+    const particleCount = Math.min(Math.floor((width * height) / 16000), 65);
     const particles: Particle[] = [];
 
     for (let i = 0; i < particleCount; i++) {
-      const baseRadius = Math.random() * 1.8 + 1.2;
+      const baseRadius = Math.random() * 1.5 + 1.0;
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
         radius: baseRadius,
         baseRadius,
         color: colors[Math.floor(Math.random() * colors.length)],
-        pulseSpeed: Math.random() * 0.03 + 0.015,
+        pulseSpeed: Math.random() * 0.025 + 0.012,
         pulsePhase: Math.random() * Math.PI * 2,
       });
     }
@@ -94,9 +94,9 @@ export const NeuralCanvas: React.FC = () => {
           mouse.y,
           mouse.radius * 1.8
         );
-        mouseGlow.addColorStop(0, 'rgba(6, 182, 212, 0.08)');
-        mouseGlow.addColorStop(0.5, 'rgba(37, 99, 235, 0.03)');
-        mouseGlow.addColorStop(1, 'rgba(2, 6, 23, 0)');
+        mouseGlow.addColorStop(0, 'rgba(59, 130, 246, 0.05)');
+        mouseGlow.addColorStop(0.5, 'rgba(139, 92, 246, 0.02)');
+        mouseGlow.addColorStop(1, 'rgba(3, 7, 18, 0)');
         ctx.fillStyle = mouseGlow;
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, mouse.radius * 1.8, 0, Math.PI * 2);
@@ -148,12 +148,12 @@ export const NeuralCanvas: React.FC = () => {
           const maxDist = 130;
 
           if (dist2 < maxDist) {
-            const alpha = (1 - dist2 / maxDist) * 0.22;
+            const alpha = (1 - dist2 / maxDist) * 0.15;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(147, 197, 253, ${alpha})`;
-            ctx.lineWidth = 0.75;
+            ctx.strokeStyle = `rgba(148, 163, 184, ${alpha})`;
+            ctx.lineWidth = 0.65;
             ctx.stroke();
           }
         }

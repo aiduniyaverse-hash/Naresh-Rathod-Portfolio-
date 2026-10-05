@@ -19,7 +19,7 @@ export default function App() {
   const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-[#020617] text-slate-100 selection:bg-cyan-500/20 selection:text-cyan-300">
+    <div className="relative min-h-screen bg-[#030712] text-slate-100 selection:bg-blue-500/20 selection:text-cyan-300">
       {/* Background Neural Particle Canvas */}
       <NeuralCanvas />
 
